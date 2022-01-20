@@ -5,6 +5,13 @@ html, body {
   canvas {
     display: block;
   }
+.container {
+  margin: 1%;
+  padding: 1%;
+}
+
+
+
   a.button {
     margin: 10px;
     padding: 20px;
@@ -14,10 +21,31 @@ html, body {
     border: 2px solid black;
     border-radius: 10px;
   }
+  a.firstOnRow {
+    margin-left: 0px;
+  }
+  a.lastOnRow {
+    margin-right: 0px;
+  }
   a.button:hover {
-    background-color: rgb(194, 194, 194);
+    background-color: rgb(255, 238, 145);
+  }
+  .list {
+    padding-top: 10px;
+    padding-top: 10px;
+  }
+
+  h1 {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
   .card {
-    padding: 10px;
+    background-color: gainsboro;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 40px;
+    width: fit-content;
+    border-radius: 25px;
   }
   
