@@ -5,4 +5,19 @@ html, body {
   canvas {
     display: block;
   }
+  a.button {
+    margin: 10px;
+    padding: 20px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 10px;
+  }
+  a.button:hover {
+    background-color: rgb(194, 194, 194);
+  }
+  .card {
+    padding: 10px;
+  }
   
