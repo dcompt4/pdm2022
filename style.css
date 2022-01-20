@@ -28,12 +28,18 @@ canvas {
 
 a.button {
   margin: 10px;
-  padding: 20px;
+  padding: 15px;
   color: black;
   text-decoration: none;
   font-weight: bold;
   border: 2px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
+}
+a.example {
+  background-color: rgb(255, 248, 208);
+}
+a.exit {
+  background-color: rgb(255, 208, 208);
 }
 a.firstOnRow {
   margin-left: 0px;
@@ -42,10 +48,10 @@ a.lastOnRow {
   margin-right: 0px;
 }
 a.button:hover {
-  background-color: rgb(255, 238, 145);
+  background-color: rgb(255, 233, 109);
 }
 a.exit:hover {
-  background-color: rgb(255, 145, 145);
+  background-color: rgb(255, 109, 109);
 }
 
 h1 {
