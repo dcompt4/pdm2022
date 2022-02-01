@@ -4,8 +4,8 @@ html, body {
 }
 canvas {
   display: block;
-  margin: 1%;
-  padding: 1%;
+  /* margin: 1%;
+  padding: 1%; */
 }
 .container {
   margin: 1%;
