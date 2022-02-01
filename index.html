@@ -1,31 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script src="p5.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
+    <title>Dean Compton</title>
+    <script src="p5.js"></script>
+
+    <!-- Bootstrap link -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!-- Open Iconic Icons -->
+<link href="/styles/open-iconic-master/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+
+<!-- Google Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!--My Styles-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
 
   </head>
   <body>
-    <div class="container">
-      <a class="button firstOnRow exit" href="https://dcompt4.github.io/index.html">Exit</a>
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" href="#">Dean Compton</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon oi oi-menu"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active mx-2">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="/pdm2022/index.html">PDM 2022</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link disabled" href="#">Projects</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-      <div class="card">
-        <h1>Drawing with P5</h1>
-        <div class="list">
-          <a class="button example firstOnRow" href="prog1/example1.html">Example 1</a>
-          <a class="button example" href="prog1/example2.html">Example 2</a>
-          <a class="button example" href="prog1/example3.html">Example 3</a>
-          <a class="button example lastOnRow" href="prog1/example4.html">Example 4</a>
-        </div>
+    <div class="container-fluid info-container">
+
+      <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" style="margin-top: 2%;">
+        <h3>/prog1/ Drawing With P5</h3>
+        <hr/>
+        <a href="prog1/example1.html"><button type="button" class="btn btn-outline-primary">Example 1</button></a>
+        <a href="prog1/example2.html"><button type="button" class="btn btn-outline-primary">Example 2</button></a>
+        <a href="prog1/example3.html"><button type="button" class="btn btn-outline-primary">Example 3</button></a>
+        <a href="prog1/example4.html"><button type="button" class="btn btn-outline-primary">Example 4</button></a>
       </div>
 
-      <div class="card">
-        <h1>Paint App</h1>
-        <div class="list">
-          <a class="button example firstOnRow" href="prog2/paint.html">Paint</a>
-        </div>
+      <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active">
+        <h3>/prog2/ Paint App</h3>
+        <hr/>
+        <a href="prog2/paint.html"><button type="button" class="btn btn-outline-primary">Paint</button></a>
       </div>
+
+    </div>
+
+
+
+
+    <footer>
+
+      <div class="row">
+        <span class="material-icons">
+          email
+        </span>
+        <small>deancompton194@yahoo.com</small>
+      </div>
+  
+      <div class="row">
+        <svg id="i-github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+          <path stroke-width="0" fill="currentColor"
+            d="M32 0 C14 0 0 14 0 32 0 53 19 62 22 62 24 62 24 61 24 60 L24 55 C17 57 14 53 13 50 13 50 13 49 11 47 10 46 6 44 10 44 13 44 15 48 15 48 18 52 22 51 24 50 24 48 26 46 26 46 18 45 12 42 12 31 12 27 13 24 15 22 15 22 13 18 15 13 15 13 20 13 24 17 27 15 37 15 40 17 44 13 49 13 49 13 51 20 49 22 49 22 51 24 52 27 52 31 52 42 45 45 38 46 39 47 40 49 40 52 L40 60 C40 61 40 62 42 62 45 62 64 53 64 32 64 14 50 0 32 0 Z" />
+        </svg>
+        <small>dcompt4</small>
+      </div>
+  
+      <div class="row">
+        <span class="material-icons">
+          email
+        </span>
+        <small>dcompt4@lsu.edu</small>
+      </div>
+  
+    </footer>
+
+
+    <!-- Bootstrap Javascript Files -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"></script>
 
     </div>
   </body>
