@@ -1,7 +1,7 @@
 let drawColor;
 
 function setup() {
-    createCanvas(window.innerWidth, window.innerHeight - 4);
+    createCanvas(window.innerWidth, window.innerHeight);
     background(240, 240, 240);
     stroke(255);
     fill('red');
