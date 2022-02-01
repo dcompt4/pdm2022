@@ -1,29 +1,29 @@
 let drawColor;
 
 function setup() {
-    createCanvas(window.innerWidth, window.innerHeight);
+    createCanvas(window.innerWidth, window.innerHeight - 4);
     background(240, 240, 240);
     stroke(255);
     fill('red');
-    rect(1, 1,40,40);
+    rect(2, 2,40,40);
     fill('orange');
-    rect(1, 41,40,40);
+    rect(2, 42,40,40);
     fill('yellow');
-    rect(1, 81,40,40);
+    rect(2, 82,40,40);
     fill('green');
-    rect(1, 121,40,40);
+    rect(2, 122,40,40);
     fill('cyan');
-    rect(1, 161,40,40);
+    rect(2, 162,40,40);
     fill('blue');
-    rect(1, 201,40,40);
+    rect(2, 202,40,40);
     fill('magenta');
-    rect(1, 241,40,40);
+    rect(2, 242,40,40);
     fill('brown');
-    rect(1, 281,40,40);
+    rect(2, 282,40,40);
     fill('white');
-    rect(1, 321,40,40);
+    rect(2, 322,40,40);
     fill('black');
-    rect(1, 361,40,40);
+    rect(2, 362,40,40);
   }
   
 function draw() {
