@@ -15,9 +15,11 @@ let spriteSheet;
 let spriteWidth = 80;
 let spriteHeight = 80;
 let newScale;
+let locationChange = 0;
 
 function preload() {
   spelunky = loadImage('SpelunkyGuy.png');
+  green = loadImage('Green.png');
 }
 
 function setup() {
@@ -27,18 +29,55 @@ function setup() {
 }
 
 function draw() {
-  background(255, 255, 255);
+  background(113, 188, 225);
 
   push();
-  newSprite(300, 300, spelunky);
+  //Underground background
+  fill(101, 78, 56);
+  noStroke();
+  rect(0, window.innerHeight/4, window.innerWidth, window.innerHeight);
+  //Underground background
+  fill(101, 78, 56);
+  noStroke();
+  rect(0, window.innerHeight/4, window.innerWidth, window.innerHeight);
+  //Dirt ground
+  fill(155, 118, 83);
+  noStroke();
+  rect(0, window.innerHeight/4, window.innerWidth, 100);
+  //Dirt ground level -1
+  fill(128, 98, 69);
+  noStroke();
+  rect(0, window.innerHeight/4*2, window.innerWidth, 100);
+  //Dirt ground level -2
+  fill(128, 98, 69);
+  noStroke();
+  rect(0, window.innerHeight/4*3, window.innerWidth, 100);
+  //Grass
+  fill(52, 140, 49);
+  noStroke();
+  rect(0, window.innerHeight/4, window.innerWidth, 10);
+  //Sky bridge
+  // fill(170);
+  // noStroke();
+  // rect(0, window.innerHeight/6, window.innerWidth, 10);
   pop();
 
   push();
-  newSprite(200, 10, spelunky);
-  pop()
+  newSprite(500, window.innerHeight/4 - 70, green);
+  pop();
+  push();
+  newSprite(900, window.innerHeight/4 - 70, spelunky);
+  pop();
+  push();
+  newSprite(0, window.innerHeight/4 - 70, spelunky);
+  pop();
 
   push();
-  newSprite(60, 500, spelunky);
+  newSprite(200, window.innerHeight/4*2 - 70, green);
+  pop();
+
+  push();
+  newSprite(60, window.innerHeight/4*3 - 70, spelunky);
   pop();
   
 
@@ -51,14 +90,15 @@ function newSprite(locationX, locationY, character) {
   let sprite = character.get(cell.x, cell.y, spriteWidth, spriteHeight);
   
   if(newScale == -1.0) {
-    translate(locationX*2 + 80,0);
+    translate((locationX + locationChange)*2 + 80,0);
   }
   scale(newScale, 1.0);
-  image(sprite, locationX, locationY);
+  image(sprite, locationX + locationChange, locationY);
 
   if ((keyIsPressed == true) && (keyCode === LEFT_ARROW)) {
     
     newScale = -1.0;
+    locationChange += -1;
     time += .1;
     if (time > 1) {
       index++;
@@ -71,6 +111,7 @@ function newSprite(locationX, locationY, character) {
   } else if ((keyIsPressed == true) && (keyCode === RIGHT_ARROW)) {
     
     newScale = 1.0;
+    locationChange += 1;
     time += .1;
     if (time > 1) {
       index++;
