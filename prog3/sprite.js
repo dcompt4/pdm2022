@@ -1,6 +1,6 @@
 let spelunkyCharacter, greenCharacter, roundBoyCharacter, roundGirlCharacter, yellowCharacter, robotCharacter;
 let cyclopsCharacter, blueCharacter, redCharacter, limeCharacter, meatCharacter, eskimoCharacter;
-
+let array = [];
 
 
 function preload() {
@@ -41,6 +41,14 @@ function setup() {
     robotCharacter = new Character(robot, 500, window.innerHeight/4*3 - 30);
     cyclopsCharacter = new Character(cyclops, 800, window.innerHeight/4*3 - 30);
     meatCharacter = new Character(meat, 1100, window.innerHeight/4*3 - 30);
+
+    let choices = [35, 70]
+    for(let i = 0; i < 20; i++) {
+      array[i] = new Cloud(random(0, window.innerWidth), 70, random(1, 2));
+    }
+    for(let i = 20; i < 40; i++) {
+      array[i] = new Cloud(random(0, window.innerWidth), 35, random(1, 2));
+    }
     
 }
 
@@ -98,28 +106,6 @@ function draw() {
   noStroke();
   ellipse(0,0,150,150);
   pop();
-
-  
-  // cloud(80, 70);
-  // cloud(250, 70);
-  // cloud(575, 70);
-  // cloud(925, 70);
-  // cloud(1250, 70);
-  // cloud(1425, 70);
-  // cloud(1560, 70);
-  // cloud(1825, 70);
-
-  // cloud(0, 35);
-  // cloud(150, 35);
-  // cloud(500, 35);
-  // cloud(800, 35);
-  // cloud(1050, 35);
-  // cloud(1200, 35);
-  // cloud(1490, 35);
-  // cloud(1725, 35);
-  // cloud(1900, 35);
-  
-
   
   greenCharacter.draw();
   roundBoyCharacter.draw();
@@ -133,6 +119,10 @@ function draw() {
   robotCharacter.draw();
   cyclopsCharacter.draw();
   meatCharacter.draw();
+
+  for(let i = 0; i < 40; i++) {
+    array[i].draw();
+  }
 }
 
 function keyPressed() {
@@ -181,17 +171,32 @@ function keyReleased() {
   meatCharacter.stop();
 }
 
+class Cloud {
+  constructor(x, y, speed) {
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+  }
+
+  draw() {
+    fill(255);
+    noStroke();
+    ellipse(this.x, this.y, 40, 20);
+    ellipse(this.x+30, this.y, 40, 20);
+    ellipse(this.x+60, this.y, 40, 20);
+    ellipse(this.x+15, this.y-10, 40, 20);
+    ellipse(this.x+45, this.y-10, 40, 20);
+
+    this.x += this.speed;
+
+    if(this.x > window.innerWidth + 100) {
+      this.x = -100;
+    }
+  }
 
 
-function cloud(cloudX, cloudY) {
-  fill(255);
-  noStroke();
-  ellipse(cloudX, cloudY, 40, 20);
-  ellipse(cloudX+30, cloudY, 40, 20);
-  ellipse(cloudX+60, cloudY, 40, 20);
-  ellipse(cloudX+15, cloudY-10, 40, 20);
-  ellipse(cloudX+45, cloudY-10, 40, 20);
 }
+
 
 class Character {
   constructor(character, x, y) {
