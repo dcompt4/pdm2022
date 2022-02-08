@@ -25,22 +25,22 @@ function setup() {
     imageMode(CENTER);
 
     // Top Layer
-    greenCharacter = new Character(greenChar, 100, window.innerHeight/4 - 30);
-    roundBoyCharacter = new Character(roundBoy, 400, window.innerHeight/4 - 30);
-    roundGirlCharacter = new Character(roundGirl, 700, window.innerHeight/4 - 30);
-    limeCharacter = new Character(limeChar, 1000, window.innerHeight/4 - 30);
+    greenCharacter = new Character(greenChar, random(50, window.innerWidth-50), random(window.innerHeight/4 - 30, window.innerHeight - 40), random(2, 5));
+    roundBoyCharacter = new Character(roundBoy, random(50, window.innerWidth-50), random(window.innerHeight/4 - 30, window.innerHeight - 40), random(2, 5));
+    roundGirlCharacter = new Character(roundGirl, random(50, window.innerWidth-50), random(window.innerHeight/4 - 30, window.innerHeight - 40), random(2, 5));
+    limeCharacter = new Character(limeChar, random(50, window.innerWidth-50), random(window.innerHeight/4 - 30, window.innerHeight - 40), random(2, 5));
 
     // Mid Layer
-    redCharacter = new Character(redChar, 300, window.innerHeight/4*2 - 30);
-    yellowCharacter = new Character(yellowChar, 600, window.innerHeight/4*2 - 30);
-    blueCharacter = new Character(blueChar, 900, window.innerHeight/4*2 - 30);
-    eskimoCharacter = new Character(eskimo, 1200, window.innerHeight/4*2 - 30);
+    redCharacter = new Character(redChar, random(50, window.innerWidth-50), random(window.innerHeight/4 - 30, window.innerHeight - 40), random(2, 5));
+    yellowCharacter = new Character(yellowChar, random(50, window.innerWidth-50), random(window.innerHeight/4 - 30, window.innerHeight - 40), random(2, 5));
+    blueCharacter = new Character(blueChar, random(50, window.innerWidth-50), random(window.innerHeight/4 - 30, window.innerHeight - 40), random(2, 5));
+    eskimoCharacter = new Character(eskimo, random(50, window.innerWidth-50), random(window.innerHeight/4 - 30, window.innerHeight - 40), random(2, 5));
 
     // Bottom Layer
-    spelunkyCharacter = new Character(spelunky, 200, window.innerHeight/4*3 - 30);
-    robotCharacter = new Character(robot, 500, window.innerHeight/4*3 - 30);
-    cyclopsCharacter = new Character(cyclops, 800, window.innerHeight/4*3 - 30);
-    meatCharacter = new Character(meat, 1100, window.innerHeight/4*3 - 30);
+    spelunkyCharacter = new Character(spelunky, random(50, window.innerWidth-50), random(window.innerHeight/4 - 30, window.innerHeight - 40), random(2, 5));
+    robotCharacter = new Character(robot, random(50, window.innerWidth-50), random(window.innerHeight/4 - 30, window.innerHeight - 40), random(2, 5));
+    cyclopsCharacter = new Character(cyclops, random(50, window.innerWidth-50), random(window.innerHeight/4 - 30, window.innerHeight - 40), random(2, 5));
+    meatCharacter = new Character(meat, random(50, window.innerWidth-50), random(window.innerHeight/4 - 30, window.innerHeight - 40), random(2, 5));
 
     let choices = [35, 70]
     for(let i = 0; i < 20; i++) {
@@ -57,45 +57,45 @@ function draw() {
 
   push();
   //Underground background
-  fill(125);
-  noStroke();
-  rect(0, window.innerHeight/4, window.innerWidth, window.innerHeight/4);
-  //Underground background
-  fill(25);
-  noStroke();
-  rect(0, window.innerHeight/4*2, window.innerWidth, window.innerHeight/4*2);
-  //Dirt ground
-  fill(155, 118, 83);
-  noStroke();
-  rect(0, window.innerHeight/4, window.innerWidth, 100);
-  //Dirt ground level -1 ceiling
-  fill(100);
-  noStroke();
-  rect(0, window.innerHeight/4 + 100, window.innerWidth, 5);
-  //Dirt ground level -1
-  fill(101, 78, 56);
-  noStroke();
-  rect(0, window.innerHeight/4*2, window.innerWidth, 100);
-  //Dirt ground level -1 floor
-  fill(100);
-  noStroke();
-  rect(0, window.innerHeight/4*2, window.innerWidth, 10);
-  //Dirt ground level -2 ceiling
-  fill(0);
-  noStroke();
-  rect(0, window.innerHeight/4*2 + 100, window.innerWidth, 5);
-  //Dirt ground level -2
-  fill(52, 41, 31);
-  noStroke();
-  rect(0, window.innerHeight/4*3, window.innerWidth, window.innerHeight/4);
-  //Dirt ground level -2 floor
-  fill(0);
-  noStroke();
-  rect(0, window.innerHeight/4*3, window.innerWidth, 10);
+  // fill(125);
+  // noStroke();
+  // rect(0, window.innerHeight/4, window.innerWidth, window.innerHeight/4);
+  // //Underground background
+  // fill(25);
+  // noStroke();
+  // rect(0, window.innerHeight/4*2, window.innerWidth, window.innerHeight/4*2);
+  // //Dirt ground
+  // fill(155, 118, 83);
+  // noStroke();
+  // rect(0, window.innerHeight/4, window.innerWidth, 100);
+  // //Dirt ground level -1 ceiling
+  // fill(100);
+  // noStroke();
+  // rect(0, window.innerHeight/4 + 100, window.innerWidth, 5);
+  // //Dirt ground level -1
+  // fill(101, 78, 56);
+  // noStroke();
+  // rect(0, window.innerHeight/4*2, window.innerWidth, 100);
+  // //Dirt ground level -1 floor
+  // fill(100);
+  // noStroke();
+  // rect(0, window.innerHeight/4*2, window.innerWidth, 10);
+  // //Dirt ground level -2 ceiling
+  // fill(0);
+  // noStroke();
+  // rect(0, window.innerHeight/4*2 + 100, window.innerWidth, 5);
+  // //Dirt ground level -2
+  // fill(52, 41, 31);
+  // noStroke();
+  // rect(0, window.innerHeight/4*3, window.innerWidth, window.innerHeight/4);
+  // //Dirt ground level -2 floor
+  // fill(0);
+  // noStroke();
+  // rect(0, window.innerHeight/4*3, window.innerWidth, 10);
   //Grass
   fill(52, 140, 49);
   noStroke();
-  rect(0, window.innerHeight/4, window.innerWidth, 10);
+  rect(0, window.innerHeight/4, window.innerWidth, window.innerHeight);
   stroke(52, 140, 49);
   strokeWeight(4);
   for(var i = 0; i < window.innerWidth; i += 5) {
@@ -199,12 +199,13 @@ class Cloud {
 
 
 class Character {
-  constructor(character, x, y) {
+  constructor(character, x, y, speed) {
     this.character = character;
     this.x = x;
     this.y = y;
     this.move = 0;
     this.facing = 1;
+    this.speed = speed;
   }
 
   draw() {
@@ -218,11 +219,22 @@ class Character {
       image(this.character, 0, 0, 80, 80, 80 * (this.sx + 1), 0, 80, 80);
     }
 
-    if(frameCount % 5 == 0) {
+
+    if(frameCount % (7 - (round(this.speed - 2))) == 0) {
       this.sx = (this.sx + 1) % 8;
     }
 
-    this.x += 2 * this.move;
+    if(this.x > window.innerWidth) {
+      this.move = -(this.move);
+      this.facing = -(this.facing);
+    }
+
+    if(this.x < 0) {
+      this.move = -(this.move);
+      this.facing = -(this.facing);
+    }
+
+    this.x += this.speed * this.move;
     pop();
   }
 
