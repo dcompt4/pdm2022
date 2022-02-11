@@ -2,6 +2,7 @@ let spelunkyCharacter, greenCharacter, roundBoyCharacter, roundGirlCharacter, ye
 let cyclopsCharacter, blueCharacter, redCharacter, limeCharacter, meatCharacter, eskimoCharacter;
 let array = [];
 let numEnemies = 40;
+let gameState = 'wait';
 
 
 function preload() {
@@ -14,26 +15,41 @@ function setup() {
     // Fixes scale(-1) issue
     imageMode(CENTER);
 
+    let startDirection = [-1, 1];
     for(let i = 0; i < numEnemies; i++) {
-      array[i] = new Character(bug, random(50, window.innerWidth-50), random(50, window.innerHeight - 50), random(2, 5));
+      array[i] = new Character(bug, random(50, window.innerWidth-50), random(50, window.innerHeight - 50), random(2, 5), random(startDirection));
     }
     
 }
 
 function draw() {
   background(210, 210, 210);
+  
+  if(gameState == 'wait') {
+    textSize(30);
+    textAlign(CENTER, CENTER);
+    text('Press space to start game!', 0, height/2, width);
+  } else if(gameState == 'start') {
+    for(let i = 0; i < numEnemies; i++) {
+      array[i].draw();
+    }
+  } else if(gameState == 'end') {
 
-  for(let i = 0; i < numEnemies; i++) {
-    array[i].draw();
   }
+
+
+
+
+  
 
   
 }
 
-let startDirection = [-1, 1];
 function keyPressed() {
-  for(let i = 0; i < numEnemies; i++) {
-    array[i].go(random(startDirection));
+  if(keyCode == 32 && gameState == 'wait') {
+    gameState = 'start';
+  } else if (keyCode == 32) {
+    
   }
 }
 
@@ -45,13 +61,16 @@ function mousePressed() {
 
 
 class Character {
-  constructor(character, x, y, speed) {
+  constructor(character, x, y, speed, direction) {
     this.character = character;
     this.x = x;
     this.y = y;
     this.move = 0;
     this.facing = 1;
     this.speed = speed;
+    this.move = direction;
+    this.facing = -direction;
+    this.sx = 2;
   }
 
   draw() {
@@ -59,8 +78,10 @@ class Character {
     translate(this.x,this.y);
     scale(this.facing, 1);
 
-    if(this.move == 0) {
+    if(this.squished) {
       image(this.character, 0, 0, 75, 75, 600, 0, 150, 150);
+    }else if(this.move == 0) {
+      image(this.character, 0, 0, 75, 75, 0, 0, 150, 150);
     } else {
       image(this.character, 0, 0, 75, 75, 150 * (this.sx + 1), 0, 150, 150);
     }
@@ -82,12 +103,6 @@ class Character {
 
     this.x += this.speed * this.move;
     pop();
-  }
-
-  go(direction) {
-    this.move = direction;
-    this.facing = -direction;
-    this.sx = 2;
   }
 
   squish() {
