@@ -93,7 +93,8 @@ function keyPressed() {
       array[p] = new Character(bug, random(50, window.innerWidth-50), random(50, window.innerHeight - 50), random(2, 5), random(startDirection));
     }
 
-    score = 0
+    round = 1;
+    score = 0;
     startTime = millis();
     gameState = 'start';
   }
