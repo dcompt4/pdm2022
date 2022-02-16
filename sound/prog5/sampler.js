@@ -5,7 +5,8 @@ let sound1 = new Tone.Player('../sounds/G_ChordCowbell_732.mp3');
 let sounds = new Tone.Players({
   'cowbell': '../sounds/G_ChordCowbell.mp3',
   'high_hat': '../sounds/high_hat.mp3',
-  'bass': '../sounds/bass.mp3'
+  'bass': '../sounds/bass.mp3',
+  'snare': '../sounds/snare.mp3'
 });
 
 let buttons = [];
@@ -34,7 +35,7 @@ function setup() {
     buttons[3] = createButton('4');
     buttons[3].position(window.innerWidth/2, window.innerHeight/2);
     buttons[3].size(window.innerWidth/2 - 20, window.innerHeight/2 - 20);
-    buttons[3].mousePressed( ()=>playSound('high_hat') );
+    buttons[3].mousePressed( ()=>playSound('snare') );
 
   }
   
@@ -54,5 +55,7 @@ function playSound(whichSound) {
     sounds.player('high_hat').start();
   } else if(whichSound == 'bass') {
     sounds.player('bass').start();
+  } else if(whichSound == 'snare') {
+    sounds.player('snare').start();
   }
 }
