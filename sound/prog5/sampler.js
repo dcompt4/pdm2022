@@ -1,5 +1,5 @@
 
-let sound1 = new Tone.Player('../sounds/G_ChordCowbell_732.mp3');
+let sound1 = new Tone.Player('../sounds/G_ChordCowbell.mp3');
 
 
 let sounds = new Tone.Players({
@@ -44,8 +44,15 @@ function draw() {
 }
 
 function keyPressed() {
-  sound1.start();
-  console.log('play sound');
+  if(keyCode == '49') {
+    sounds.player('cowbell').start();
+  } else if(keyCode == '50') {
+    sounds.player('high_hat').start();
+  } else if(keyCode == '51') {
+    sounds.player('bass').start();
+  } else if(keyCode == '52') {
+    sounds.player('snare').start();
+  }
 }
 
 function playSound(whichSound) {
