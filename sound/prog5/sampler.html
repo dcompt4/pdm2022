@@ -7,6 +7,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <meta charset="utf-8" />
     <script src="../../tone.js"></script>
+    <script src="../../NexusUI.js"></script>
 
   </head>
   <body style="margin: 0; padding: 0; overflow: hidden;">
@@ -14,20 +15,35 @@
 
     <style>
       button {
-        background-color: rgb(211, 211, 211);
-        /* border: none; */
+        border-radius: 5px;
+        background-color: rgb(238, 238, 238);
+        opacity: 1;
+        border: none;
       }
       button:hover {
         /* background-color: rgb(212, 167, 167); */
-        /* border: none; */
+        border: none;
       }
       button:active {
-        background-color: rgb(212, 167, 167);
-        /* border: none; */
+        background-color: rgb(34, 187, 187);
+        color: aliceblue;
+        border: none;
       }
+      
     </style>
-    
-        <script src="sampler.js"></script>
+
+        
+        <div id="dial"><h3>Gain</h3></div>
+        
+        <div id="slider" style="margin-bottom: 60px;"><h3>Delay</h3></div>
+        
+        <h3>Sounds</h3>
+        <div id="instrument" style="display: flex;"></div>
+        <h3>Canvas Sounds</h3>
+        <main>
+          <script src="sampler.js"></script>
+        </main>
+        
     
   </body>
 </html>
