@@ -10,6 +10,24 @@ let timeLeft;
 let startDirection = [-1, 1];
 let bugWave = 1;
 
+let synthA = new Tone.PolySynth().toDestination();
+
+const loopA = new Tone.Loop(time => {
+  synthA.triggerAttackRelease("C2", "8n", time);
+}, "4n").start(0);
+
+let pattern = new Tone.Pattern((time, note) => {
+  synthA.triggerAttackRelease(note, '8n', time);
+}, ['C4', 'D4', 'E4', 'G4', 'A4'], '4n').start(0);
+
+let melody = new Tone.Sequence((time, note) => {
+  if(note != null) {
+    synthA.triggerAttackRelease(note, '8n', time);
+  }
+}, ['G4', 'A4', null, 'B4', 'C5', null, 'F4']);
+
+Tone.Transport.start();
+
 function preload() {
   //Loads all sprite sheets
   bug = loadImage('bugSquishSheet2.png');
