@@ -35,13 +35,13 @@ let melodypart2 = new Tone.Sequence((time, note) => {
   if(note != null) {
     synthA.triggerAttackRelease(note, '16n', time + 0.1);
   }
-}, [null, 'C4', null, 'E4', null, 'A3',null, 'C4', null, 'F3', null, 'A3', null, 'G3', null, 'B3']).start(0);
+}, [null, 'C4', null, 'E4', null, 'A3',null, 'C4', null, 'F3', null, 'A3', null, 'G3', null, 'B3']);
 
 let melodypart1 = new Tone.Sequence((time, note) => {
   if(note != null) {
     synthA.triggerAttackRelease(note, '8n', time);
   }
-}, ['C4', null, 'E4', null, 'A3', null,'C4', null, 'F3', null, 'A3', null, 'G3', null, 'B3', null]).start(0);
+}, ['C4', null, 'E4', null, 'A3', null,'C4', null, 'F3', null, 'A3', null, 'G3', null, 'B3', null]);
 
 synthA.volume.value = -40;
 
@@ -71,6 +71,10 @@ function draw() {
     textAlign(CENTER, CENTER);
     text('Press space to start game!', 0, height/2, width);
   } else if(gameState == 'start') {
+
+    melodypart1.start();
+    melodypart2.start();
+
     for(let i = 0; i < numEnemies; i++) {
       array[i].draw();
     }
@@ -97,6 +101,9 @@ function draw() {
 
 
   } else if(gameState == 'end') {
+
+    melodypart1.stop();
+    melodypart2.stop();
 
     textSize(30);
     textAlign(CENTER, CENTER);
