@@ -45,6 +45,9 @@ let melodypart1 = new Tone.Sequence((time, note) => {
 
 synthA.volume.value = -40;
 
+
+
+Tone.Transport.bpm.value = 120;
 Tone.Transport.start();
 
 function preload() {
@@ -102,6 +105,7 @@ function draw() {
 
   } else if(gameState == 'end') {
 
+    Tone.Transport.bpm.value = 120;
     melodypart1.stop();
     melodypart2.stop();
 
@@ -154,6 +158,8 @@ function mousePressed() {
         if(array[i].squished) {
           squishSound.triggerAttackRelease('8n');
           score++;
+          Tone.Transport.bpm.value++;
+
           for(let j = 0; j < numEnemies; j++) {
             array[j].speed += 0.05;
           }
