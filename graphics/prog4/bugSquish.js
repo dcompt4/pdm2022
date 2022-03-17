@@ -12,20 +12,33 @@ let bugWave = 1;
 
 let synthA = new Tone.PolySynth().toDestination();
 
-const loopA = new Tone.Loop(time => {
-  synthA.triggerAttackRelease("C2", "8n", time);
-}, "4n").start(0);
+// const loopA = new Tone.Loop(time => {
+//   synthA.triggerAttackRelease("C2", "8n", time);
+// }, "4n").start(0);
 
 let pattern = new Tone.Pattern((time, note) => {
   synthA.triggerAttackRelease(note, '8n', time);
 }, ['C4', 'D4', 'E4', 'G4', 'A4'], '4n').start(0);
 
-let melody = new Tone.Sequence((time, note) => {
+// let melody = new Tone.Sequence((time, note) => {
+//   if(note != null) {
+//     synthA.triggerAttackRelease(note, '16n', time*2);
+//   }
+// }, ['C4', 'C4', 'E4', 'E4', 'A3', 'A3','C4', 'C4', 'F3', 'F3', 'A3', 'A3', 'G3', 'G3', 'B3', 'B3']).start(0);
+
+let melodypart2 = new Tone.Sequence((time, note) => {
+  if(note != null) {
+    synthA.triggerAttackRelease(note, '16n', time + 0.1);
+  }
+}, [null, 'C4', null, 'E4', null, 'A3',null, 'C4', null, 'F3', null, 'A3', null, 'G3', null, 'B3']).start(0);
+
+let melodypart1 = new Tone.Sequence((time, note) => {
   if(note != null) {
     synthA.triggerAttackRelease(note, '8n', time);
   }
-}, ['G4', 'A4', null, 'B4', 'C5', null, 'F4']);
+}, ['C4', null, 'E4', null, 'A3', null,'C4', null, 'F3', null, 'A3', null, 'G3', null, 'B3', null]).start(0);
 
+synthA.volume.value = -30;
 Tone.Transport.start();
 
 function preload() {
