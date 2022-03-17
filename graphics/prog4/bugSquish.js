@@ -87,6 +87,9 @@ function draw() {
     text('Timer: ' + myTime, 20, 20, width);
     text('Score: ' + score, 20, 50, width);
 
+    synthA.volume.value = -40 + (20 - (myTime - 10));
+
+
     if(score > 0 && score % (bugWave * numEnemies) == 0) {
       for(let n = 0; n < numEnemies; n++) {
         array[n] = new Character(bug, random(50, window.innerWidth-50), random(50, window.innerHeight - 50), random(2, 5), random(startDirection));
