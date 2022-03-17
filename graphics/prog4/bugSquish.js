@@ -10,21 +10,26 @@ let timeLeft;
 let startDirection = [-1, 1];
 let bugWave = 1;
 
+// Squish Sound
+let oscillator = new Tone.AMOscillator(100,'sine','sine').start()
+let gain = new Tone.Gain().toDestination();
+let panner = new Tone.Panner().connect(gain);
+let squishSound = new Tone.AmplitudeEnvelope({
+  attack: 0.1,
+  decay: 0.05,
+  sustain: 0.05,
+  release: 0.05
+}).connect(panner);
+oscillator.connect(squishSound);
+let freqLFO = new Tone.LFO(1000,800,2000).start();
+freqLFO.connect(oscillator.frequency); 
+oscillator.volume.value = -30;
+
+
+
+
+
 let synthA = new Tone.PolySynth().toDestination();
-
-// const loopA = new Tone.Loop(time => {
-//   synthA.triggerAttackRelease("C2", "8n", time);
-// }, "4n").start(0);
-
-let pattern = new Tone.Pattern((time, note) => {
-  synthA.triggerAttackRelease(note, '8n', time);
-}, ['C4', 'D4', 'E4', 'G4', 'A4'], '4n').start(0);
-
-// let melody = new Tone.Sequence((time, note) => {
-//   if(note != null) {
-//     synthA.triggerAttackRelease(note, '16n', time*2);
-//   }
-// }, ['C4', 'C4', 'E4', 'E4', 'A3', 'A3','C4', 'C4', 'F3', 'F3', 'A3', 'A3', 'G3', 'G3', 'B3', 'B3']).start(0);
 
 let melodypart2 = new Tone.Sequence((time, note) => {
   if(note != null) {
@@ -38,7 +43,8 @@ let melodypart1 = new Tone.Sequence((time, note) => {
   }
 }, ['C4', null, 'E4', null, 'A3', null,'C4', null, 'F3', null, 'A3', null, 'G3', null, 'B3', null]).start(0);
 
-synthA.volume.value = -30;
+synthA.volume.value = -40;
+
 Tone.Transport.start();
 
 function preload() {
@@ -139,6 +145,7 @@ function mousePressed() {
       if(!(array[i].squished)) {
         array[i].squish();
         if(array[i].squished) {
+          squishSound.triggerAttackRelease('8n');
           score++;
           for(let j = 0; j < numEnemies; j++) {
             array[j].speed += 0.05;
