@@ -10,6 +10,8 @@ let timeLeft;
 let startDirection = [-1, 1];
 let bugWave = 1;
 
+let alignMusic = true;
+
 // Squish Sound
 let oscillator = new Tone.AMOscillator(100,'sine','sine').start()
 let gain = new Tone.Gain().toDestination();
@@ -30,6 +32,7 @@ oscillator.volume.value = -30;
 
 
 let synthA = new Tone.PolySynth().toDestination();
+let synthB = new Tone.PolySynth().toDestination();
 
 let melodypart2 = new Tone.Sequence((time, note) => {
   if(note != null) {
@@ -43,7 +46,16 @@ let melodypart1 = new Tone.Sequence((time, note) => {
   }
 }, ['C4', null, 'E4', null, 'A3', null,'C4', null, 'F3', null, 'A3', null, 'G3', null, 'B3', null]);
 
+let waitMusic = new Tone.Sequence((time, note) => {
+  if(note != null) {
+    synthB.triggerAttackRelease(note, '8n', time);
+  }
+}, ['C1', null, 'E1', null, 'A0', null,'C1', null, 'F0', null, 'A0', null, 'G0', null, 'B0', null]);
+
+
+
 synthA.volume.value = -40;
+synthB.volume.value = -20;
 
 
 
@@ -70,10 +82,23 @@ function draw() {
   background(210, 210, 210);
   
   if(gameState == 'wait') {
+
+    waitMusic.start();
+
     textSize(30);
     textAlign(CENTER, CENTER);
     text('Press space to start game!', 0, height/2, width);
+
+    alignMusic = true;
+
   } else if(gameState == 'start') {
+
+    if(alignMusic) {
+      waitMusic.stop();
+      alignMusic = false;
+    }
+
+    waitMusic.start();
 
     melodypart1.start();
     melodypart2.start();
@@ -111,6 +136,7 @@ function draw() {
     Tone.Transport.bpm.value = 120;
     melodypart1.stop();
     melodypart2.stop();
+    waitMusic.start();
 
     textSize(30);
     textAlign(CENTER, CENTER);
@@ -120,10 +146,7 @@ function draw() {
   
     text('Press space to start new game!', 0, height/2 + 60, width);
 
-    
-    
-
-
+    alignMusic = true;
   }
 
 
