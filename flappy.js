@@ -44,6 +44,8 @@ function draw() {
 
   player.draw();
 
+  collision(player, obstacles);
+
   if(gameState == 'end') {
     push();
     fill(0);
@@ -87,6 +89,18 @@ function draw() {
   
 }
 
+function collision(player, obstacles) {
+
+  for (let k = 0; k < numObstacles; k++) {
+    if((player.x + 25 >= obstacles[k].x - 10 && player.x + 25 <= obstacles[k].x + 30) || (player.x - 25 >= obstacles[k].x - 10 && player.x - 25 <= obstacles[k].x + 30)) {
+      if(player.y + 25 >= obstacles[k].y + 90 || player.y - 25 <= obstacles[k].y - 90) {
+        gameState = 'end';
+      }
+    }
+  }
+
+}
+
 function keyPressed() {
 
   if(keyCode == 32 && gameState == 'paused') {
@@ -120,10 +134,6 @@ function keyPressed() {
   }
   
 
-}
-
-function keyReleased() {
-  
 }
 
 class Obstacle {
@@ -230,6 +240,8 @@ class Player {
   reset() {
     this.x = window.innerWidth/2;
     this.y = window.innerHeight/2;
+    this.velocity = 0;
+    this.acceleration = 0;
   }
 
 
