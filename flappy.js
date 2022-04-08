@@ -4,6 +4,17 @@ let numObstacles;
 let obstacles = [];
 let score = 0;
 let gameState = 'paused';
+let canRestart = false;
+let start = 0;
+
+/* Global Variables */
+// Speed of pipes (px/frame)
+let gameSpeed = 3;
+// Distance between pipes (px)
+let pipeDistance = 300;
+// Distance pipes can move up and down
+let pipeVariablity = 200;
+
 
 
 function preload() {
@@ -16,10 +27,10 @@ function setup() {
 
     player = new Player(window.innerWidth/2, window.innerHeight/2);
 
-    numObstacles = round(window.innerWidth/300) + 1;
+    numObstacles = round(window.innerWidth/pipeDistance) + 1;
 
     for(let i = 1; i <= numObstacles; i++) {
-      obstacles[i-1] = new Obstacle(window.innerWidth/2 + 300*i, random(window.innerHeight/2 - 100, window.innerHeight/2 + 100), 3);
+      obstacles[i-1] = new Obstacle(window.innerWidth/2 + pipeDistance*i, random(window.innerHeight/2 - pipeVariablity, window.innerHeight/2 + pipeVariablity), gameSpeed);
     }
 }
 
@@ -166,8 +177,8 @@ class Obstacle {
     }
 
     if(this.x < -44) {
-      this.x = 300*numObstacles - 44;
-      this.y = random(window.innerHeight/2 - 100, window.innerHeight/2 + 100);
+      this.x = pipeDistance*numObstacles - 44;
+      this.y = random(window.innerHeight/2 - pipeVariablity, window.innerHeight/2 + pipeVariablity);
       this.scoreCounted = false;
     }
 
@@ -188,6 +199,7 @@ class Obstacle {
   reset() {
     this.speed = 0;
     this.x = this.originalX;
+    this.y = random(window.innerHeight/2 - pipeVariablity, window.innerHeight/2 + pipeVariablity);
     this.scoreCounted = false;
   }
 
