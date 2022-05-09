@@ -197,9 +197,10 @@ function draw() {
     playingStateStart = true;
 
     gameOver.stop();
-    synth.releaseAll();
     melody.stop();
     bass.stop();
+    synth.releaseAll();
+    bassSynth.releaseAll();
 
     push();
     fill(0);
