@@ -6,6 +6,8 @@ let score = 0;
 let gameState = 'paused';
 let canRestart = false;
 let start = 0;
+let gameStateDelay = 0;
+let firstTime = true;
 
 /* Global Variables */
 // Speed of pipes (px/frame)
@@ -43,8 +45,8 @@ synth.volume.value = -25;
 const over = [
   {'time': 0.0, 'note': ["C3", "E3", "G3"], 'duration': 1.3},
   {'time': 1.5, 'note': ["F3", "A3", "C4"], 'duration': 1.2},
-  {'time': 3.0, 'note': ["G3", "C4", "D4"], 'duration': 2.0},
-  {'time': 5.0, 'note': ["G3", "B3", "D4"], 'duration': 2.0},
+  {'time': 3.25, 'note': ["G3", "C4", "D4"], 'duration': 2.0},
+  {'time': 5.25, 'note': ["G3", "B3", "D4"], 'duration': 2.0},
 ];
 
 const gameOver = new Tone.Part(function(time, note) {
@@ -57,12 +59,12 @@ const melodyMusic = [
   {'time': 1.50, 'note': ["A4", "C5"], 'duration': 0.25},
   {'time': 2.25, 'note': ["A4", "C5"], 'duration': 0.25},
   {'time': 2.75, 'note': ["B4", "D5"], 'duration': 0.25},
-  {'time': 3.25, 'note': ["B4", "D5"], 'duration': 1.00},
-  {'time': 4.25, 'note': ["C5", "E5"], 'duration': 0.25},
-  {'time': 4.75, 'note': ["A4", "C5"], 'duration': 0.25},
-  {'time': 5.25, 'note': ["F4", "A4"], 'duration': 0.25},
-  {'time': 5.75, 'note': ["E4", "G4"], 'duration': 0.25},
-  {'time': 6.25, 'note': ["D4", "G4"], 'duration': 1.50},
+  {'time': 3.25, 'note': ["B4", "D5"], 'duration': 0.50},
+  {'time': 4.00, 'note': ["C5", "E5"], 'duration': 0.25},
+  {'time': 4.50, 'note': ["A4", "C5"], 'duration': 0.25},
+  {'time': 5.00, 'note': ["F4", "A4"], 'duration': 0.25},
+  {'time': 5.50, 'note': ["E4", "G4"], 'duration': 0.25},
+  {'time': 6.00, 'note': ["D4", "G4"], 'duration': 1.25},
 ];
 
 let melody = new Tone.Part(function(time, note) {
@@ -77,8 +79,8 @@ bassSynth.volume.value = -20;
 const bassPart = [
   {'time': 0.0, 'note': ["C3", "E3", "G3"], 'duration': 1.3},
   {'time': 1.5, 'note': ["F3", "A3", "C4"], 'duration': 1.2},
-  {'time': 3.0, 'note': ["G3", "C4", "D4"], 'duration': 2.0},
-  {'time': 5.0, 'note': ["G3", "B3", "D4"], 'duration': 2.0},
+  {'time': 3.25, 'note': ["G3", "C4", "D4"], 'duration': 2.0},
+  {'time': 5.25, 'note': ["G3", "B3", "D4"], 'duration': 2.0},
 ];
 
 let bass = new Tone.Part(function(time, note) {
@@ -155,6 +157,7 @@ function draw() {
   collision(player, obstacles);
 
   if(gameState == 'end') {
+    gameStateDelay++;
 
     serialPDM.transmit('squishBrightness', 0);
 
@@ -167,10 +170,11 @@ function draw() {
       gameOver.loop = true;
       gameOver.loopEnd = 8;
       endStateStart = false;
+      melody.stop();
+      bass.stop();
+      synth.releaseAll();
+      bassSynth.releaseAll();
     }
-
-    melody.stop();
-    bass.stop();
 
     push();
     fill(0);
@@ -193,6 +197,7 @@ function draw() {
     playingStateStart = true;
 
     gameOver.stop();
+    synth.releaseAll();
     melody.stop();
     bass.stop();
 
@@ -253,7 +258,10 @@ function collision(player, obstacles) {
 function keyPressed() {
 
   if(keyCode == 32 && gameState == 'paused') {
-    Tone.start();
+    if(firstTime) {
+      Tone.start();
+      firstTime = false;
+    }
     player.go();
     for(let i = 1; i <= numObstacles; i++) {
       obstacles[i-1].go();
@@ -266,7 +274,7 @@ function keyPressed() {
     player.jump();
   }
 
-  if(keyCode == 32 && gameState == 'end') {
+  if(keyCode == 32 && gameState == 'end' && gameStateDelay > 250) {
     player.reset();
     for(let i = 1; i <= numObstacles; i++) {
       obstacles[i-1].reset();
@@ -283,6 +291,7 @@ function keyPressed() {
     for(let i = 1; i <= numObstacles; i++) {
       obstacles[i-1].pause();
     }
+    gameStateDelay = 0;
     gameState = 'paused';
   }
   
@@ -292,7 +301,10 @@ function keyPressed() {
 function buttonPress() {
 
   if(gameState == 'paused') {
-    Tone.start();
+    if(firstTime) {
+      Tone.start();
+      firstTime = false;
+    }
     player.go();
     for(let i = 1; i <= numObstacles; i++) {
       obstacles[i-1].go();
@@ -305,7 +317,7 @@ function buttonPress() {
     player.jump();
   }
 
-  if(gameState == 'end') {
+  if(gameState == 'end' && gameStateDelay > 250) {
     player.reset();
     for(let i = 1; i <= numObstacles; i++) {
       obstacles[i-1].reset();
@@ -313,6 +325,7 @@ function buttonPress() {
 
     score = 0;
 
+    gameStateDelay = 0;
     endStateStart = true;
     gameState = 'paused';
   }
@@ -436,3 +449,4 @@ function playSound(sound)
 {
   sounds.player(sound).start();
 }
+
