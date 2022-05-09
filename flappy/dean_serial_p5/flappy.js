@@ -13,7 +13,91 @@ let gameSpeed = 3;
 // Distance between pipes (px)
 let pipeDistance = 300;
 // Distance pipes can move up and down
-let pipeVariablity = 200;
+let pipeVariablity = 100;
+
+/* 
+  Sound
+*/
+
+let endStateStart = true;
+let playingStateStart = true;
+
+let sounds = new Tone.Players(
+  {
+    'flap': 'flap.wav',
+    'bonk': 'bonk.wav'
+  }
+);
+sounds.volume.value = -6;
+
+var gain = new Tone.Gain().toDestination();
+sounds.connect(gain);
+
+Tone.Transport.bpm.value = 120;
+
+// Melodies
+
+let synth = new Tone.PolySynth().toDestination();
+synth.volume.value = -25;
+
+const over = [
+  {'time': 0.0, 'note': ["C3", "E3", "G3"], 'duration': 1.3},
+  {'time': 1.5, 'note': ["F3", "A3", "C4"], 'duration': 1.2},
+  {'time': 3.0, 'note': ["G3", "C4", "D4"], 'duration': 2.0},
+  {'time': 5.0, 'note': ["G3", "B3", "D4"], 'duration': 2.0},
+];
+
+const gameOver = new Tone.Part(function(time, note) {
+  synth.triggerAttackRelease(note.note, note.duration, time);
+}, over);
+
+const melodyMusic = [
+  {'time': 0.00, 'note': ["B4", "D5"], 'duration': 0.25},
+  {'time': 0.75, 'note': ["C5", "E5"], 'duration': 0.25},
+  {'time': 1.50, 'note': ["A4", "C5"], 'duration': 0.25},
+  {'time': 2.25, 'note': ["A4", "C5"], 'duration': 0.25},
+  {'time': 2.75, 'note': ["B4", "D5"], 'duration': 0.25},
+  {'time': 3.25, 'note': ["B4", "D5"], 'duration': 1.00},
+  {'time': 4.25, 'note': ["C5", "E5"], 'duration': 0.25},
+  {'time': 4.75, 'note': ["A4", "C5"], 'duration': 0.25},
+  {'time': 5.25, 'note': ["F4", "A4"], 'duration': 0.25},
+  {'time': 5.75, 'note': ["E4", "G4"], 'duration': 0.25},
+  {'time': 6.25, 'note': ["D4", "G4"], 'duration': 1.50},
+];
+
+let melody = new Tone.Part(function(time, note) {
+  synth.triggerAttackRelease(note.note, note.duration, time);
+}, melodyMusic);
+
+//Bass
+
+let bassSynth = new Tone.PolySynth().toDestination();
+bassSynth.volume.value = -20;
+
+const bassPart = [
+  {'time': 0.0, 'note': ["C3", "E3", "G3"], 'duration': 1.3},
+  {'time': 1.5, 'note': ["F3", "A3", "C4"], 'duration': 1.2},
+  {'time': 3.0, 'note': ["G3", "C4", "D4"], 'duration': 2.0},
+  {'time': 5.0, 'note': ["G3", "B3", "D4"], 'duration': 2.0},
+];
+
+let bass = new Tone.Part(function(time, note) {
+  bassSynth.triggerAttackRelease(note.note, note.duration, time);
+}, bassPart);
+
+
+
+
+Tone.Transport.start();
+
+/* 
+  Hardware
+*/
+
+let serialPDM;
+let portName = "COM3";
+let arduinoClick = false;
+let clickAllowed = true;
 
 
 
@@ -22,20 +106,33 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(window.innerWidth, window.innerHeight);
-    imageMode(CENTER);
+  serialPDM = new PDMSerial(portName);
+  sensor = serialPDM.sensorData;
 
-    player = new Player(window.innerWidth/2, window.innerHeight/2);
+  createCanvas(window.innerWidth, window.innerHeight);
+  imageMode(CENTER);
 
-    numObstacles = round(window.innerWidth/pipeDistance) + 1;
+  player = new Player(window.innerWidth/2, window.innerHeight/2);
 
-    for(let i = 1; i <= numObstacles; i++) {
-      obstacles[i-1] = new Obstacle(window.innerWidth/2 + pipeDistance*i, random(window.innerHeight/2 - pipeVariablity, window.innerHeight/2 + pipeVariablity), gameSpeed);
-    }
+  numObstacles = round(window.innerWidth/pipeDistance) + 1;
+
+  for(let i = 1; i <= numObstacles; i++) {
+    obstacles[i-1] = new Obstacle(window.innerWidth/2 + pipeDistance*i, random(window.innerHeight/2 - pipeVariablity, window.innerHeight/2 + pipeVariablity), gameSpeed);
+  }
 }
 
 function draw() {
+  console.log(gameState);
   background(113, 188, 225);
+
+  arduinoClick = [sensor.button];
+
+  if(arduinoClick == 1 && clickAllowed) {
+    buttonPress();
+    clickAllowed = false;
+  } else if(arduinoClick == 0) {
+    clickAllowed = true;
+  }
 
   for(let i = 1; i <= numObstacles; i++) {
     obstacles[i-1].draw();
@@ -58,6 +155,23 @@ function draw() {
   collision(player, obstacles);
 
   if(gameState == 'end') {
+
+    serialPDM.transmit('squishBrightness', 0);
+
+    playingStateStart = true;
+
+    if(endStateStart) {
+      playSound('bonk');
+      Tone.Transport.bpm.value = 120;
+      gameOver.start("+1");
+      gameOver.loop = true;
+      gameOver.loopEnd = 8;
+      endStateStart = false;
+    }
+
+    melody.stop();
+    bass.stop();
+
     push();
     fill(0);
     textSize(100);
@@ -73,6 +187,15 @@ function draw() {
     text('Press to Restart', 0, height/2 + 100, width);
     pop();
   } else if (gameState == 'paused'){
+
+    serialPDM.transmit('squishBrightness', 10);
+
+    playingStateStart = true;
+
+    gameOver.stop();
+    melody.stop();
+    bass.stop();
+
     push();
     fill(0);
     textSize(50);
@@ -88,6 +211,21 @@ function draw() {
     text('Press Space/Button to Go', 0, player.y - 50, width);
     pop();
   } else {
+    if(playingStateStart) {
+      melody.start("+.25");
+      bass.start("+.25");
+  
+      melody.loop = true;
+      melody.loopEnd = 8;
+  
+      bass.loop = true;
+      bass.loopEnd = 8;
+      
+      playingStateStart = false;
+    }
+
+    serialPDM.transmit('squishBrightness', 500);
+
     push();
     fill(0);
     textSize(50);
@@ -115,6 +253,7 @@ function collision(player, obstacles) {
 function keyPressed() {
 
   if(keyCode == 32 && gameState == 'paused') {
+    Tone.start();
     player.go();
     for(let i = 1; i <= numObstacles; i++) {
       obstacles[i-1].go();
@@ -123,6 +262,7 @@ function keyPressed() {
   }
 
   if(keyCode == 32 && gameState == 'playing') {
+    playSound('flap');
     player.jump();
   }
 
@@ -133,6 +273,8 @@ function keyPressed() {
     }
 
     score = 0;
+
+    endStateStart = true;
     gameState = 'paused';
   }
 
@@ -145,6 +287,35 @@ function keyPressed() {
   }
   
 
+}
+
+function buttonPress() {
+
+  if(gameState == 'paused') {
+    Tone.start();
+    player.go();
+    for(let i = 1; i <= numObstacles; i++) {
+      obstacles[i-1].go();
+    }
+    gameState = 'playing';
+  }
+
+  if(gameState == 'playing') {
+    playSound('flap');
+    player.jump();
+  }
+
+  if(gameState == 'end') {
+    player.reset();
+    for(let i = 1; i <= numObstacles; i++) {
+      obstacles[i-1].reset();
+    }
+
+    score = 0;
+
+    endStateStart = true;
+    gameState = 'paused';
+  }
 }
 
 class Obstacle {
@@ -257,4 +428,11 @@ class Player {
   }
 
 
+}
+
+// sound helper function
+
+function playSound(sound)
+{
+  sounds.player(sound).start();
 }
