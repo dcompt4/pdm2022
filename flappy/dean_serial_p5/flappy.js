@@ -46,7 +46,7 @@ const over = [
   {'time': 0.0, 'note': ["C3", "E3", "G3"], 'duration': 1.3},
   {'time': 1.5, 'note': ["F3", "A3", "C4"], 'duration': 1.2},
   {'time': 3.25, 'note': ["G3", "C4", "D4"], 'duration': 2.0},
-  {'time': 5.25, 'note': ["G3", "B3", "D4"], 'duration': 2.0},
+  {'time': 5.25, 'note': ["G3", "B3", "D4"], 'duration': 2.5},
 ];
 
 const gameOver = new Tone.Part(function(time, note) {
@@ -61,10 +61,10 @@ const melodyMusic = [
   {'time': 2.75, 'note': ["B4", "D5"], 'duration': 0.25},
   {'time': 3.25, 'note': ["B4", "D5"], 'duration': 0.50},
   {'time': 4.00, 'note': ["C5", "E5"], 'duration': 0.25},
-  {'time': 4.50, 'note': ["A4", "C5"], 'duration': 0.25},
-  {'time': 5.00, 'note': ["F4", "A4"], 'duration': 0.25},
-  {'time': 5.50, 'note': ["E4", "G4"], 'duration': 0.25},
-  {'time': 6.00, 'note': ["D4", "G4"], 'duration': 1.25},
+  {'time': 4.75, 'note': ["A4", "C5"], 'duration': 0.25},
+  {'time': 5.50, 'note': ["F4", "A4"], 'duration': 0.25},
+  {'time': 6.25, 'note': ["E4", "G4"], 'duration': 0.25},
+  {'time': 7.00, 'note': ["D4", "G4"], 'duration': 0.75},
 ];
 
 let melody = new Tone.Part(function(time, note) {
