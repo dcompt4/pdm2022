@@ -89,6 +89,9 @@
             <div class="title-row row p-0 m-0">
               <h3>Flappy</h3>
               <a href="dean_serial_p5/flappy.html"><button class="btn btn-outline-primary m-0 ml-3 px-2">Play</button></a>
+              <a href="https://www.youtube.com/watch?v=t_oVXnwmBnA" target="_blank"><button class="btn btn-outline-primary m-0 ml-3 px-2">Video Demo</button></a>
+              <a href="https://youtube.com/shorts/1HxGppCTJ1w?feature=share" target="_blank"><button class="btn btn-outline-primary m-0 ml-3 px-2">Arduino Video Demo</button></a>
+
             </div>
             <hr/>
             <p>Flappy is a web-based side-scroller where the player controls a small yellow circle attempting to jump/fly between pipes to stay alive and achieve the highest score possible.
@@ -96,6 +99,9 @@
               on only a keyboard, but it is also designed to work with an ELEGOO UNO R3 arduino. The code supports a button and a LED meant to control the bird and provide feedback to the
               arduino of which state the game is in.
             </p>
+            <div style="width:100%; display: flex; justify-content: center">
+              <img src="flappy.JPG" width="80%" alt="Van Halen Logo">
+            </div>
             <h4 class="mt-5">Graphics</h4>
             <p>The game utilizes the p5 javascript library to draw and perform all of the game mechanics and functions. Their are two classes, Player and Obstacle, used to control the
                objects in the game. There are two functions, keyPressed() and buttonPress(), which handle the user inputs. Function keyPressed() is a built in p5 function which detects
@@ -167,10 +173,19 @@
 
             <h4 class="mt-5">Future Plans</h4>
             <p>
-              Flappy utilizes the Tone javascript library to use synthesizers and players to generate sound effects and music. The music is synthesized using two of Tone's
-              PolySynths, one for bass line and one for melody. The bass and melody play during the play state, but when the player dies, the melody stops. When the game is
-              paused or waiting to start, no music plays. The song is based off of the popular 80s hit "Jump" by Van Halen.
+              Flappy was a project for CSC 2463 Programming for Digital Media at LSU. With more time to work on Flappy, more improvements could be made to the graphics and
+              sound portions of the game. Some of these ideas include:
             </p>
+            <ul>
+              <li>Add a player sprite</li>
+              <li>Add more scenery to make the game look better overall</li>
+              <li>Optimize collisions to stop game from stuttering</li>
+              <li>Optimize Tone (Tone sometimes throws an error which breaks the game. User has to exit and reenter game to fix)</li>
+              <li>Add more parts to the music to make it sound more full</li>
+              <li>Add collectibles to boost score</li>
+              <li>Add powerups to change game mechanics (Change pipe speed, change player speed, etc)</li>
+              <li>Add customizations to allow player to change colors of items</li>
+            </ul>
 
             
             

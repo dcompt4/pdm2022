@@ -298,6 +298,10 @@ animation: fadeIn 1s;
 100% {opacity:1;}
 }
 
+ul {
+  list-style-type:circle;
+}
+
 
 
 
