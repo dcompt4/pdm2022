@@ -117,7 +117,7 @@ function setup() {
   player = new Player(window.innerWidth/2, window.innerHeight/2);
 
   numObstacles = round(window.innerWidth/pipeDistance) + 1;
-
+  console.log(numObstacles)
   for(let i = 1; i <= numObstacles; i++) {
     obstacles[i-1] = new Obstacle(window.innerWidth/2 + pipeDistance*i, random(window.innerHeight/2 - pipeVariablity, window.innerHeight/2 + pipeVariablity), gameSpeed);
   }

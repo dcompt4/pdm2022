@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>DC PDM</title>
+    <link rel="icon" href="../dc_logo_icon.png" type="image/icon type">
+
+    <script src="p5.js"></script>
+
+    <!-- Bootstrap link -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<!-- Open Iconic Icons -->
+<link href="/styles/open-iconic-master/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+
+<!-- Google Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!--My Styles-->
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+
+      <div class = navbar-content>
+        <!-- Navbar toggler button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon oi oi-menu"></span>
+        </button>
+        
+        <!-- Navbar on left side of logo -->
+        <div class = navbar-content-left>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active mx-2">
+              <a class="nav-link" href="">HOME</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="/pdm2022/index.html">PDM 2022</a>
+            </li>
+          </ul>
+        </div>
+  
+        <!-- DC logo -->
+        <img class="" src="../dc_logo_long.png" style="width: 200px;" alt="DC">
+  
+        <!-- Navbar on right side of logo -->
+        <div class = navbar-content-right>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="/projects/projects.html">PROJECTS</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="http://flact-studios.github.io">FLACT-STUDIOS</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      
+  
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02" aria-expanded="false">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active mx-2">
+            <a class="nav-link active" href="">HOME</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="/pdm2022/index.html">PDM 2022</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="/projects/projects.html">PROJECTS</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="http://flact-studios.github.io">FLACT-STUDIOS</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="main">
+
+      <div class="container-fluid info-container fade-in-container">
+    
+        <div class="odd-container">
+          <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" id="about-container">
+            <div class="title-row row p-0 m-0">
+              <h3>Flappy</h3>
+              <a href="dean_serial_p5/flappy.html"><button class="btn btn-outline-primary m-0 ml-3 px-2">Play</button></a>
+            </div>
+            <hr/>
+            <p>Flappy is a web-based side-scroller where the player controls a small yellow circle attempting to jump/fly between pipes to stay alive and achieve the highest score possible.
+              Flappy is inspired by the old mobile side-scroller "Flappy Bird". The game uses real life physics to make the game feel smooth and provide a challenge. The game can be played
+              on only a keyboard, but it is also designed to work with an ELEGOO UNO R3 arduino. The code supports a button and a LED meant to control the bird and provide feedback to the
+              arduino of which state the game is in.
+            </p>
+            <h4 class="mt-5">Graphics</h4>
+            <p>The game utilizes the p5 javascript library to draw and perform all of the game mechanics and functions. Their are two classes, Player and Obstacle, used to control the
+               objects in the game. There are two functions, keyPressed() and buttonPress(), which handle the user inputs. Function keyPressed() is a built in p5 function which detects
+               keyboard input to handle the two keyboard controls:
+            </p>
+            <ul>
+              <li>Space Bar - Jump/Resume/Start</li>
+              <li>Escape Key - Pause</li>
+            </ul>
+            <p>
+              The player physics use the kinematic formulas:
+            </p>
+            <ul>
+              <li>v = v<sub>0</sub> + at</li>
+              <li>x<sub>t</sub> = x<sub>0</sub> + vt</li>
+            </ul>
+            <p>
+              Where a = 20 px/s and the t = 1/60 (60 fps).
+            </p>
+            <p>
+              The obstacles are objects in a holder array so they are easy to be operated on. They are spawned in order with a set distance between each other, but they are always
+              randomized in height.The player scores when they pass the midpoint of the pipe, and the pipe continues moving all the way to the left side of the canvas. Once a pipe
+              completely exits the left side of the canvas, it's position will be set to the last pipe on the right and the height of the gap will be randomized so the user does not
+              go through the "same" pipe. By designing the obstacles this way, the game only uses the minimum number of obstacles to span the screen with no gaps to create an
+              endless game with no repeated patterns.
+            </p>
+
+            <h4 class="mt-5">Sound</h4>
+            <p>
+              Flappy utilizes the Tone javascript library to use synthesizers and players to generate sound effects and music. The music is synthesized using two of Tone's
+              PolySynths, one for bass line and one for melody. The bass and melody play during the play state, but when the player dies, the melody stops. When the game is
+              paused or waiting to start, no music plays. The song is based off of the popular 80s hit "Jump" by Van Halen.
+            </p>
+            <div style="width:100%; display: flex; justify-content: center">
+              <img src="van_halen.png" width="400px" alt="Van Halen Logo">
+            </div>
+            <p>
+              Sound effects are achieved through a Tone Player. The player gets triggered during game events to play the intended sound. Specifically, the flap sound is
+              triggered when the player jumps, and the bonk sound is triggered when the player collides with a pipe or the ground. The sound effects are from freesound.org:
+            </p>
+            <ul>
+              <li><a target="_blank" href="https://freesound.org/people/ani_music/sounds/244980/">Flap</a></li>
+              <li><a target="_blank" href="https://freesound.org/people/Gavin6049/sounds/621145/">Bonk</a></li>
+            </ul>
+            <h4 class="mt-5">Hardware</h4>
+
+            <div style="width: 100%; display: flex; flex-wrap: wrap;">
+              <div class="col-12 col-md-4" style="padding-left: 0;">
+                <p>
+                  The game was developed with keyboard and mouse controls for regular use/play. There is also support for arduino controls. Using an ELEGOO UNO R3 arduino,
+                  the controls were ported to a singular button. The arduino also harnessed an LED used to display what state the game was in.
+                </p>
+                <ul>
+                  <li>Digital Input: Button connected to pin 2</li>
+                  <li>Digital Output: LED connected to pin 9</li>
+                </ul>
+              </div>
+              <div class="col-12 col-md-4" style="width: 33%;">
+                <div style="width:100%; display: flex; justify-content: center">
+                  <img class="rounded mb-3" src="arduino_code.JPG" style="width: 100%;" alt="Arduino">
+                </div>
+              </div>
+              <div class="col-12 col-md-4" style="width: 33%;">
+                <div style="width:100%; display: flex; justify-content: center">
+                  <img class="rounded" src="arduino.jpg" style="width: 100%;" alt="Arduino">
+                </div>
+              </div>
+            </div>
+
+            <h4 class="mt-5">Future Plans</h4>
+            <p>
+              Flappy utilizes the Tone javascript library to use synthesizers and players to generate sound effects and music. The music is synthesized using two of Tone's
+              PolySynths, one for bass line and one for melody. The bass and melody play during the play state, but when the player dies, the melody stops. When the game is
+              paused or waiting to start, no music plays. The song is based off of the popular 80s hit "Jump" by Van Halen.
+            </p>
+
+            
+            
+          </div>
+        </div>
+    
+      </div>
+    </div>
+
+    <footer>
+
+      <div class="row">
+        <span class="material-icons">
+          email
+        </span>
+        <small>deancompton194@yahoo.com</small>
+      </div>
+  
+      <div class="row">
+        <svg id="i-github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+          <path stroke-width="0" fill="currentColor"
+            d="M32 0 C14 0 0 14 0 32 0 53 19 62 22 62 24 62 24 61 24 60 L24 55 C17 57 14 53 13 50 13 50 13 49 11 47 10 46 6 44 10 44 13 44 15 48 15 48 18 52 22 51 24 50 24 48 26 46 26 46 18 45 12 42 12 31 12 27 13 24 15 22 15 22 13 18 15 13 15 13 20 13 24 17 27 15 37 15 40 17 44 13 49 13 49 13 51 20 49 22 49 22 51 24 52 27 52 31 52 42 45 45 38 46 39 47 40 49 40 52 L40 60 C40 61 40 62 42 62 45 62 64 53 64 32 64 14 50 0 32 0 Z" />
+        </svg>
+        <small>dcompt4</small>
+      </div>
+  
+      <div class="row">
+        <span class="material-icons">
+          email
+        </span>
+        <small>dcompt4@lsu.edu</small>
+      </div>
+  
+    </footer>
+
+
+    <!-- Bootstrap Javascript Files -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  crossorigin="anonymous"></script>
+
+    </div>
+  </body>
+</html>

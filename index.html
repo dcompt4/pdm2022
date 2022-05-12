@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Dean Compton</title>
+    <title>DC PDM</title>
+    <link rel="icon" href="dc_logo_icon.png" type="image/icon type">
+
     <script src="p5.js"></script>
 
     <!-- Bootstrap link -->
@@ -22,31 +24,157 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="#">Dean Compton</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+
+      <div class = navbar-content>
+        <!-- Navbar toggler button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
         aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon oi oi-menu"></span>
-      </button>
+          <span class="navbar-toggler-icon oi oi-menu"></span>
+        </button>
+        
+        <!-- Navbar on left side of logo -->
+        <div class = navbar-content-left>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active mx-2">
+              <a class="nav-link" href="">HOME</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link active" href="/pdm2022/index.html">PDM 2022</a>
+            </li>
+          </ul>
+        </div>
   
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <!-- DC logo -->
+        <img class="" src="dc_logo_long.png" style="width: 200px;" alt="DC">
+  
+        <!-- Navbar on right side of logo -->
+        <div class = navbar-content-right>
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="/projects/projects.html">PROJECTS</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="http://flact-studios.github.io">FLACT-STUDIOS</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      
+  
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02" aria-expanded="false">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active mx-2">
-            <a class="nav-link" href="https://dcompt4.github.io">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link active" href="">HOME</a>
           </li>
           <li class="nav-item mx-2">
-            <a class="nav-link" href="index.html">PDM 2022</a>
+            <a class="nav-link" href="/pdm2022/index.html">PDM 2022</a>
           </li>
           <li class="nav-item mx-2">
-            <a class="nav-link" href="flappy/dean_serial_p5/index.html">Flappy</a>
+            <a class="nav-link" href="/projects/projects.html">PROJECTS</a>
           </li>
           <li class="nav-item mx-2">
-            <a class="nav-link disabled" href="#">Projects</a>
+            <a class="nav-link" href="http://flact-studios.github.io">FLACT-STUDIOS</a>
           </li>
         </ul>
       </div>
     </nav>
 
-    <div class="container-fluid info-container">
+    <div class="main">
+
+      <div class="container-fluid info-container fade-in-container">
+    
+        <div class="odd-container">
+          <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" id="about-container">
+            <h3>Flappy</h3>
+            <hr/>
+            <a href="flappy/flappy.html"><button type="button" class="btn btn-outline-primary">Project</button></a>
+          </div>
+        </div>
+    
+        <div class="even-container">
+          <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" id="school-container">
+            <h3>Drawing With P5</h3>
+            <hr/>
+            <a href="graphics/prog1/example1.html"><button type="button" class="btn btn-outline-primary">Example 1</button></a>
+            <a href="graphics/prog1/example2.html"><button type="button" class="btn btn-outline-primary">Example 2</button></a>
+            <a href="graphics/prog1/example3.html"><button type="button" class="btn btn-outline-primary">Example 3</button></a>
+            <a href="graphics/prog1/example4.html"><button type="button" class="btn btn-outline-primary">Example 4</button></a>
+          </div>
+        </div>
+    
+        <div class="odd-container">
+          <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" id="work-container">      
+            <h3>Paint App</h3>
+            <hr/>
+            <a href="graphics/prog2/paint.html"><button type="button" class="btn btn-outline-primary">Paint</button></a>
+          </div>
+        </div>
+    
+        <div class="even-container">
+          <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" id="skills-container">
+            <h3>Sprite Animation</h3>
+            <hr/>
+            <a href="graphics/prog3/sprite.html"><button type="button" class="btn btn-outline-primary">Sprite</button></a>
+          </div>
+        </div>
+    
+    
+        <div class="odd-container">
+          <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" id="contact-container">
+            <h3>Bug Squish</h3>
+            <hr/>
+            <a href="graphics/prog4/bugSquish.html"><button type="button" class="btn btn-outline-primary">Bug Squish</button></a>
+          </div>
+        </div>
+
+        <div class="even-container">
+          <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" id="skills-container">
+            <h3>Audio Sampler</h3>
+            <hr/>
+            <a href="sound/prog5/sampler.html"><button type="button" class="btn btn-outline-primary">Sampler</button></a>
+          </div>
+        </div>
+    
+    
+        <div class="odd-container">
+          <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" id="contact-container">
+            <h3>Synths and Sequencers</h3>
+            <hr/>
+            <a href="sound/prog6/synth.html"><button type="button" class="btn btn-outline-primary">Synth</button></a>
+          </div>
+        </div>
+
+        <div class="even-container">
+          <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" id="skills-container">
+            <h3>Sound Synthesis & Sound Effects</h3>
+            <hr/>
+            <a href="sound/prog7/sound.html"><button type="button" class="btn btn-outline-primary">Sound</button></a>
+          </div>
+        </div>
+    
+    
+        <div class="odd-container">
+          <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" id="contact-container">
+            <h3>Arduino Serial Communication</h3>
+            <hr/>
+            <a href="hardware/In-class-Serial-P5/index.html"><button type="button" class="btn btn-outline-primary">Serial</button></a>
+          </div>
+        </div>
+
+        <div class="even-container">
+          <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" id="skills-container">
+            <h3>Arduino Bug Squish</h3>
+            <hr/>
+            <a href="hardware_final/dean_serial_p5/index.html"><button type="button" class="btn btn-outline-primary">Bug Squish</button></a>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+
+
+    <!-- <div class="container-fluid info-container">
 
       <div class="container tab-container col-sm-12 col-md-10 col-lg-8 col-xl-8 active" style="margin-top: 2%;">
         <h3>/prog1/ Drawing With P5</h3>
@@ -118,7 +246,7 @@
         <a href="hardware_final/dean_serial_p5/index.html"><button type="button" class="btn btn-outline-primary">Bug Squish</button></a>
       </div>
 
-    </div>
+    </div> -->
 
 
 
